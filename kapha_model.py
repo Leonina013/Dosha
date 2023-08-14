@@ -10,7 +10,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error
 
-dataset_filepath = '/content/drive/My Drive/av/Kapha_Dataset.csv'
+dataset_filepath = 'Kapha_Dataset.csv'
 df = pd.read_csv(dataset_filepath)
 
 X = df[['MeanBMI', 'SedentaryMinutes', 'LightlyActiveMinutes', 'FairlyActiveMinutes', 'VeryActiveMinutes']]
