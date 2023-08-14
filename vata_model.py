@@ -6,7 +6,7 @@ from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.model_selection import GridSearchCV
 from sklearn.model_selection import train_test_split
 
-file_path = '/content/drive/My Drive/av/Vata_Dataset_with_Scores.csv'
+file_path = 'Vata_Dataset_with_Scores.csv'
 vata_data = pd.read_csv(file_path)
 
 feature_columns = ['TotalMinutesAsleep', 'BedtimeRoutine', 'SleepQuality', 'TotalSteps', 'SedentaryMinutes', 'ModeratelyActiveMinutes']
