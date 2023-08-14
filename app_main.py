@@ -32,7 +32,7 @@ def predict_pitta_score(input_values):
 
     pitta_model = GradientBoostingRegressor(n_estimators=100, learning_rate=0.1, max_depth=3, random_state=42)
 
-    pitta_dataset = pd.read_csv('/content/drive/My Drive/av/Pitha_Dataset.csv')
+    pitta_dataset = pd.read_csv('Pitha_Dataset.csv')
     X_pitta = pitta_dataset[pitta_feature_columns]
     y_pitta = pitta_dataset['Pitha_Score']
 
@@ -57,7 +57,7 @@ def predict_vata_score(input_values):
 
     vata_model = xgb.XGBRegressor(n_estimators=100, learning_rate=0.1, max_depth=3, subsample=0.8, random_state=42)
 
-    vata_dataset = pd.read_csv('/content/drive/My Drive/av/Vata_Dataset_with_Scores.csv')
+    vata_dataset = pd.read_csv('Vata_Dataset_with_Scores.csv')
     X_vata = vata_dataset[vata_feature_columns]
     y_vata = vata_dataset['Vata_Score']
 
