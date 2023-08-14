@@ -5,7 +5,7 @@ from sklearn.ensemble import GradientBoostingRegressor
 import numpy as np
 
 
-dataset_file_path = '/content/drive/My Drive/av/Pitha_Dataset.csv'
+dataset_file_path = 'Pitha_Dataset.csv'
 dataset = pd.read_csv(dataset_file_path)
 
 
