@@ -72,11 +72,32 @@ def predict_vata_score(input_values):
 
     return predicted_vata_score[0], vata_category
 
+def predict_kapha_score(input_values):
+    kapha_feature_columns = ['MeanBMI', 'SedentaryMinutes', 'LightlyActiveMinutes', 'FairlyActiveMinutes', 'VeryActiveMinutes']
+
+    kapha_model = RandomForestRegressor(n_estimators=100, random_state=42)
+
+    kapha_dataset = pd.read_csv('Kapha_Dataset.csv')
+    X_kapha = kapha_dataset[kapha_feature_columns]
+    y_kapha = kapha_dataset['Kapha_Score']
+
+    X_kapha_train, _, y_kapha_train, _ = train_test_split(X_kapha, y_kapha, test_size=0.2, random_state=42)
+
+    kapha_model.fit(X_kapha_train, y_kapha_train)
+
+    input_values_df = pd.DataFrame([input_values])
+
+    predicted_kapha_score = kapha_model.predict(input_values_df)
+    kapha_category = "No to Light Kapha" if predicted_kapha_score[0] <= 5 else ("Moderate Kapha" if predicted_kapha_score[0] <= 8 else "Extreme Kapha")
+
+    return predicted_kapha_score[0], kapha_category
+
+
 # Streamlit app
 st.title("Dosha Score Prediction")
 st.sidebar.title("Enter Dosha Features")
 
-# Sidebar inputs
+# Sidebar inputs for Pitta Dosha
 pitta_input_values = {
     'AverageHeartRate': st.sidebar.number_input("Average Heart Rate"),
     'CumulativeSteps': st.sidebar.number_input("Cumulative Steps"),
@@ -86,6 +107,7 @@ pitta_input_values = {
     'Calories': st.sidebar.number_input("Calories")
 }
 
+# Sidebar inputs for Vata Dosha
 vata_input_values = {
     'TotalMinutesAsleep': st.sidebar.number_input("Total Minutes Asleep (Vata)"),
     'BedtimeRoutine': st.sidebar.number_input("Bedtime Routine (Vata)"),
@@ -95,11 +117,21 @@ vata_input_values = {
     'ModeratelyActiveMinutes': st.sidebar.number_input("Moderately Active Minutes (Vata)")
 }
 
-# Predict scores
+# Sidebar inputs for Kapha Dosha
+kapha_input_values = {
+    'MeanBMI': st.sidebar.number_input("Mean BMI"),
+    'SedentaryMinutes': st.sidebar.number_input("Sedentary Minutes"),
+    'LightlyActiveMinutes': st.sidebar.number_input("Lightly Active Minutes"),
+    'FairlyActiveMinutes': st.sidebar.number_input("Fairly Active Minutes"),
+    'VeryActiveMinutes': st.sidebar.number_input("Very Active Minutes")
+}
+
+# Predict scores for Pitta, Vata, and Kapha
 predicted_pitta_score, pitta_category, pitta_nutrition_advice = predict_pitta_score(pitta_input_values)
 predicted_vata_score, vata_category = predict_vata_score(vata_input_values)
+predicted_kapha_score, kapha_category = predict_kapha_score(kapha_input_values)
 
-# Display results
+# Display results for Pitta, Vata, and Kapha
 st.write("## Pitta Dosha")
 st.write("Predicted Pitta Score:", predicted_pitta_score)
 st.write("Predicted Pitta Category:", pitta_category)
@@ -108,3 +140,7 @@ st.write("Nutrition Advice for Pitta:", pitta_nutrition_advice)
 st.write("## Vata Dosha")
 st.write("Predicted Vata Score:", predicted_vata_score)
 st.write("Predicted Vata Category:", vata_category)
+
+st.write("## Kapha Dosha")
+st.write("Predicted Kapha Score:", predicted_kapha_score)
+st.write("Predicted Kapha Category:", kapha_category)
