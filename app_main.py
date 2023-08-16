@@ -20,40 +20,40 @@ def get_pitta_nutrition_advice(pitta_category):
     # Nutrition advice for each category
     nutrition_advice = {
         "No to Light Pitha": '''
-        Favor cooling foods: Incorporate foods that have a cooling effect on the body.
-        Include sweet, bitter, and astringent tastes: Focus on foods with these tastes to balance excess heat.
-        Limit spicy, oily, and acidic foods: Reduce or avoid foods that can increase Pitta, such as hot spices, fried foods, and excessive sourness.
-        Stay hydrated: Drink cool or room temperature water and herbal teas to balance the heat.
-        Enjoy fresh, ripe, and sweet fruits: Opt for sweet fruits like melons, grapes, and sweet berries.
-        Sample No to Light Pitta Diet:
-        - Breakfast: A bowl of cool oatmeal with ripe berries.
-        - Lunch: Steamed vegetables with quinoa and a cooling mint-cucumber yogurt sauce.
-        - Snack: Sliced watermelon or a cool cucumber salad.
-        - Dinner: Basmati rice with steamed zucchini and a small serving of sweet and juicy fruits.
+        Favor cooling foods: Incorporate foods that have a cooling effect on the body.\n
+        Include sweet, bitter, and astringent tastes: Focus on foods with these tastes to balance excess heat.\n
+        Limit spicy, oily, and acidic foods: Reduce or avoid foods that can increase Pitta, such as hot spices, fried foods, and excessive sourness.\n
+        Stay hydrated: Drink cool or room temperature water and herbal teas to balance the heat.\n
+        Enjoy fresh, ripe, and sweet fruits: Opt for sweet fruits like melons, grapes, and sweet berries.\n
+        Sample No to Light Pitta Diet:\n
+        - Breakfast: A bowl of cool oatmeal with ripe berries.\n
+        - Lunch: Steamed vegetables with quinoa and a cooling mint-cucumber yogurt sauce.\n
+        - Snack: Sliced watermelon or a cool cucumber salad.\n
+        - Dinner: Basmati rice with steamed zucchini and a small serving of sweet and juicy fruits.\n
         ''',
         "Moderate Pitha": '''
-        Balanced meals: Include a mix of cooling and slightly warming foods to maintain equilibrium.
-        Enjoy a variety of tastes: Incorporate sweet, bitter, astringent, and a moderate amount of pungent tastes.
-        Moderation in spices: Use milder spices like coriander, fennel, and cardamom in your meals.
-        Stay hydrated: Drink room temperature water and herbal teas.
-        Include fresh and cooked foods: Combine raw and cooked vegetables, grains, and legumes.
-        Sample Moderate Pitta Diet:
-        - Breakfast: A fruit smoothie with ripe bananas, mangoes, and a pinch of cardamom.
-        - Lunch: Mixed greens salad with roasted vegetables, quinoa, and a lemon-olive oil dressing.
-        - Snack: Sliced apples with almond butter.
-        - Dinner: Baked salmon with steamed asparagus and a side of basmati rice.
+        Balanced meals: Include a mix of cooling and slightly warming foods to maintain equilibrium.\n
+        Enjoy a variety of tastes: Incorporate sweet, bitter, astringent, and a moderate amount of pungent tastes.\n
+        Moderation in spices: Use milder spices like coriander, fennel, and cardamom in your meals.\n
+        Stay hydrated: Drink room temperature water and herbal teas.\n
+        Include fresh and cooked foods: Combine raw and cooked vegetables, grains, and legumes.\n
+        Sample Moderate Pitta Diet:\n
+        - Breakfast: A fruit smoothie with ripe bananas, mangoes, and a pinch of cardamom.\n
+        - Lunch: Mixed greens salad with roasted vegetables, quinoa, and a lemon-olive oil dressing.\n
+        - Snack: Sliced apples with almond butter.\n
+        - Dinner: Baked salmon with steamed asparagus and a side of basmati rice.\n
         ''',
         "Extreme Pitha": '''
-        Emphasize cooling and calming foods: Prioritize foods with a strong cooling effect.
-        Favor sweet, bitter, and astringent tastes: These tastes help balance excess heat and acidity.
-        Avoid hot and spicy foods: Steer clear of very spicy, oily, and fried foods.
-        Stay well-hydrated: Drink cool water, coconut water, and herbal teas.
-        Include plenty of fresh fruits: Opt for sweet, juicy fruits that help cool the body.
-        Sample High Pitta Diet:
-        - Breakfast: A bowl of cool, cooked barley cereal with sliced peaches.
-        - Lunch: Cucumber and mint raita with rice or quinoa and a side of steamed broccoli.
-        - Snack: A handful of sweet grapes.
-        - Dinner: Baked or steamed white fish with a side of lightly steamed carrots and zucchini.
+        Emphasize cooling and calming foods: Prioritize foods with a strong cooling effect.\n
+        Favor sweet, bitter, and astringent tastes: These tastes help balance excess heat and acidity.\n
+        Avoid hot and spicy foods: Steer clear of very spicy, oily, and fried foods.\n
+        Stay well-hydrated: Drink cool water, coconut water, and herbal teas.\n
+        Include plenty of fresh fruits: Opt for sweet, juicy fruits that help cool the body.\n
+        Sample High Pitta Diet:\n
+        - Breakfast: A bowl of cool, cooked barley cereal with sliced peaches.\n
+        - Lunch: Cucumber and mint raita with rice or quinoa and a side of steamed broccoli.\n
+        - Snack: A handful of sweet grapes.\n
+        - Dinner: Baked or steamed white fish with a side of lightly steamed carrots and zucchini.\n
         '''
     }
     return nutrition_advice.get(pitta_category, "")
