@@ -186,55 +186,44 @@ def predict_kapha_score(input_values):
 st.title("Dosha Score Prediction")
 st.sidebar.title("Enter Dosha Features")
 
-# Sidebar inputs for Pitta Dosha
-pitta_input_values = {
-    'AverageHeartRate': st.sidebar.number_input("Average Heart Rate (bpm) (Pitta)"),
-    'CumulativeSteps': st.sidebar.number_input("Cumulative Steps (Pitta)"),
-    'ActiveDistance': st.sidebar.number_input("Active Distance (km) (Pitta)"),
-    'LightActiveDistance': st.sidebar.number_input("Light Active Distance (km) (Pitta)"),
-    'MinutesAsleep': st.sidebar.number_input("Minutes Asleep (min) (Pitta)"),
-    'Calories': st.sidebar.number_input("Calories (cal) (Pitta)")
-}
+# Dosha selection dropdown
+dosha_type = st.sidebar.selectbox("Select Dosha Type", ["Pitta", "Vata", "Kapha"])
 
-# Sidebar inputs for Vata Dosha
-vata_input_values = {
-    'TotalMinutesAsleep': st.sidebar.number_input("Total Minutes Asleep (min) (Vata)"),
-    'BedtimeRoutine': st.sidebar.number_input("Bedtime Routine (min) (Vata)"),
-    'SleepQuality': st.sidebar.number_input("Sleep Quality (BedtimeRoutine/TotalMinutesAsleep) (Vata)"),
-    'TotalSteps': st.sidebar.number_input("Total Steps (Vata)"),
-    'SedentaryMinutes': st.sidebar.number_input("Sedentary Minutes (min) (Vata)"),
-    'ModeratelyActiveMinutes': st.sidebar.number_input("Moderately Active Minutes (min) (Vata)")
-}
+if dosha_type == "Pitta":
+    dosha_input_values = {
+        'AverageHeartRate': st.sidebar.number_input("Average Heart Rate (bpm) (Pitta)"),
+        'CumulativeSteps': st.sidebar.number_input("Cumulative Steps (Pitta)"),
+        'ActiveDistance': st.sidebar.number_input("Active Distance (km) (Pitta)"),
+        'LightActiveDistance': st.sidebar.number_input("Light Active Distance (km) (Pitta)"),
+        'MinutesAsleep': st.sidebar.number_input("Minutes Asleep (min) (Pitta)"),
+        'Calories': st.sidebar.number_input("Calories (cal) (Pitta)")
+    }
+    predicted_score, dosha_category, nutrition_advice = predict_pitta_score(dosha_input_values)
+    dosha_nutrition_advice = get_pitta_nutrition_advice(dosha_category)
+elif dosha_type == "Vata":
+    dosha_input_values = {
+        'TotalMinutesAsleep': st.sidebar.number_input("Total Minutes Asleep (min) (Vata)"),
+        'BedtimeRoutine': st.sidebar.number_input("Bedtime Routine (min) (Vata)"),
+        'SleepQuality': st.sidebar.number_input("Sleep Quality (BedtimeRoutine/TotalMinutesAsleep) (Vata)"),
+        'TotalSteps': st.sidebar.number_input("Total Steps (Vata)"),
+        'SedentaryMinutes': st.sidebar.number_input("Sedentary Minutes (min) (Vata)"),
+        'ModeratelyActiveMinutes': st.sidebar.number_input("Moderately Active Minutes (min) (Vata)")
+    }
+    predicted_score, dosha_category = predict_vata_score(dosha_input_values)
+    dosha_nutrition_advice = get_vata_nutrition_advice(dosha_category)
+else:
+    dosha_input_values = {
+        'MeanBMI': st.sidebar.number_input("Mean BMI (Kapha)"),
+        'SedentaryMinutes': st.sidebar.number_input("Sedentary Minutes (min) (Kapha)"),
+        'LightlyActiveMinutes': st.sidebar.number_input("Lightly Active Minutes (min) (Kapha)"),
+        'FairlyActiveMinutes': st.sidebar.number_input("Fairly Active Minutes (min) (Kapha)"),
+        'VeryActiveMinutes': st.sidebar.number_input("Very Active Minutes (min) (Kapha)")
+    }
+    predicted_score, dosha_category = predict_kapha_score(dosha_input_values)
+    dosha_nutrition_advice = get_kapha_nutrition_advice(dosha_category)
 
-# Sidebar inputs for Kapha Dosha
-kapha_input_values = {
-    'MeanBMI': st.sidebar.number_input("Mean BMI (Kapha)"),
-    'SedentaryMinutes': st.sidebar.number_input("Sedentary Minutes (min) (Kapha)"),
-    'LightlyActiveMinutes': st.sidebar.number_input("Lightly Active Minutes (min) (Kapha)"),
-    'FairlyActiveMinutes': st.sidebar.number_input("Fairly Active Minutes (min) (Kapha)"),
-    'VeryActiveMinutes': st.sidebar.number_input("Very Active Minutes (min) (Kapha)")
-}
-
-# Predict scores for Pitta, Vata, and Kapha
-predicted_pitta_score, pitta_category, pitta_nutrition_advice = predict_pitta_score(pitta_input_values)
-predicted_vata_score, vata_category = predict_vata_score(vata_input_values)
-predicted_kapha_score, kapha_category = predict_kapha_score(kapha_input_values)
-
-# Display results for Pitta, Vata, and Kapha
-st.write("## Pitta Dosha")
-st.write("Predicted Pitta Score:", predicted_pitta_score)
-st.write("Predicted Pitta Category:", pitta_category)
-st.write("Nutrition Advice for Pitta:", pitta_nutrition_advice)
-
-st.write("## Vata Dosha")
-st.write("Predicted Vata Score:", predicted_vata_score)
-st.write("Predicted Vata Category:", vata_category)
-vata_nutrition_advice = get_vata_nutrition_advice(vata_category)
-st.write("Nutrition Advice for Vata:", vata_nutrition_advice)
-
-
-st.write("## Kapha Dosha")
-st.write("Predicted Kapha Score:", predicted_kapha_score)
-st.write("Predicted Kapha Category:", kapha_category)
-kapha_nutrition_advice = get_kapha_nutrition_advice(kapha_category)
-st.write("Nutrition Advice for Kapha:", kapha_nutrition_advice)
+# Display results for selected dosha
+st.write(f"## {dosha_type} Dosha")
+st.write(f"Predicted {dosha_type} Score:", predicted_score)
+st.write(f"Predicted {dosha_type} Category:", dosha_category)
+st.write(f"Nutrition Advice for {dosha_type}:", dosha_nutrition_advice)
