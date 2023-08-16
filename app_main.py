@@ -39,25 +39,19 @@ def get_vata_nutrition_advice(vata_category):
     }
     return nutrition_advice.get(vata_category, "")
 
-def predict_kapha_score(input_values):
-    kapha_feature_columns = ['MeanBMI', 'SedentaryMinutes', 'LightlyActiveMinutes', 'FairlyActiveMinutes', 'VeryActiveMinutes']
+def get_kapha_nutrition_advice(kapha_category):
+    nutrition_advice = {
+        "No to Light Kapha": '''Include warm, light, and stimulating foods...
+            Nutrition suggestions for No to Light Kapha...''',
+        "Moderate Kapha": '''Opt for lighter and drier foods...
+            Nutrition suggestions for Moderate Kapha...''',
+        "Extreme Kapha": '''Emphasize warm, light, and spicy foods...
+            Nutrition suggestions for Extreme Kapha...'''
+    }
+    return nutrition_advice.get(kapha_category, "")
 
-    kapha_model = RandomForestRegressor(n_estimators=100, random_state=42)
 
-    kapha_dataset = pd.read_csv('Kapha_Dataset.csv')
-    X_kapha = kapha_dataset[kapha_feature_columns]
-    y_kapha = kapha_dataset['Kapha_Score']
 
-    X_kapha_train, _, y_kapha_train, _ = train_test_split(X_kapha, y_kapha, test_size=0.2, random_state=42)
-
-    kapha_model.fit(X_kapha_train, y_kapha_train)
-
-    input_values_df = pd.DataFrame([input_values])
-
-    predicted_kapha_score = kapha_model.predict(input_values_df)
-    kapha_category = "No to Light Kapha" if predicted_kapha_score[0] <= 5 else ("Moderate Kapha" if predicted_kapha_score[0] <= 8 else "Extreme Kapha")
-
-    return predicted_kapha_score[0], kapha_category
     
 
 # Function to predict Pitta score
