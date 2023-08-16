@@ -186,34 +186,41 @@ def predict_kapha_score(input_values):
 st.title("Dosha Score Prediction")
 st.sidebar.title("Enter Dosha Features")
 
-# Sidebar inputs for Pitta Dosha
-pitta_input_values = {
-    'AverageHeartRate': st.sidebar.number_input("Average Heart Rate (bpm) (Pitta)"),
-    'CumulativeSteps': st.sidebar.number_input("Cumulative Steps (Pitta)"),
-    'ActiveDistance': st.sidebar.number_input("Active Distance (km) (Pitta)"),
-    'LightActiveDistance': st.sidebar.number_input("Light Active Distance (km) (Pitta)"),
-    'MinutesAsleep': st.sidebar.number_input("Minutes Asleep (min) (Pitta)"),
-    'Calories': st.sidebar.number_input("Calories (cal) (Pitta)")
-}
+dosha_options = ["Pitta", "Vata", "Kapha"]
+selected_dosha = st.sidebar.selectbox("Select Dosha", dosha_options)
 
-# Sidebar inputs for Vata Dosha
-vata_input_values = {
-    'TotalMinutesAsleep': st.sidebar.number_input("Total Minutes Asleep (min) (Vata)"),
-    'BedtimeRoutine': st.sidebar.number_input("Bedtime Routine (min) (Vata)"),
-    'SleepQuality': st.sidebar.number_input("Sleep Quality (BedtimeRoutine/TotalMinutesAsleep) (Vata)"),
-    'TotalSteps': st.sidebar.number_input("Total Steps (Vata)"),
-    'SedentaryMinutes': st.sidebar.number_input("Sedentary Minutes (min) (Vata)"),
-    'ModeratelyActiveMinutes': st.sidebar.number_input("Moderately Active Minutes (min) (Vata)")
-}
+if selected_dosha == "Pitta":
+    pitta_input_values = {
+        'AverageHeartRate': st.sidebar.number_input("Average Heart Rate (bpm) (Pitta)"),
+        'CumulativeSteps': st.sidebar.number_input("Cumulative Steps (Pitta)"),
+        'ActiveDistance': st.sidebar.number_input("Active Distance (km) (Pitta)"),
+        'LightActiveDistance': st.sidebar.number_input("Light Active Distance (km) (Pitta)"),
+        'MinutesAsleep': st.sidebar.number_input("Minutes Asleep (min) (Pitta)"),
+        'Calories': st.sidebar.number_input("Calories (cal) (Pitta)")
+    }
+    predicted_pitta_score, pitta_category, pitta_nutrition_advice = predict_pitta_score(pitta_input_values)
+    # ... (your existing code for displaying Pitta results)
 
-# Sidebar inputs for Kapha Dosha
-kapha_input_values = {
-    'MeanBMI': st.sidebar.number_input("Mean BMI (Kapha)"),
-    'SedentaryMinutes': st.sidebar.number_input("Sedentary Minutes (min) (Kapha)"),
-    'LightlyActiveMinutes': st.sidebar.number_input("Lightly Active Minutes (min) (Kapha)"),
-    'FairlyActiveMinutes': st.sidebar.number_input("Fairly Active Minutes (min) (Kapha)"),
-    'VeryActiveMinutes': st.sidebar.number_input("Very Active Minutes (min) (Kapha)")
-}
+elif selected_dosha == "Vata":
+    vata_input_values = {
+        'TotalMinutesAsleep': st.sidebar.number_input("Total Minutes Asleep (min) (Vata)"),
+        'BedtimeRoutine': st.sidebar.number_input("Bedtime Routine (min) (Vata)"),
+        'SleepQuality': st.sidebar.number_input("Sleep Quality (BedtimeRoutine/TotalMinutesAsleep) (Vata)"),
+        'TotalSteps': st.sidebar.number_input("Total Steps (Vata)"),
+        'SedentaryMinutes': st.sidebar.number_input("Sedentary Minutes (min) (Vata)"),
+        'ModeratelyActiveMinutes': st.sidebar.number_input("Moderately Active Minutes (min) (Vata)")
+    }
+    predicted_vata_score, vata_category = predict_vata_score(vata_input_values)
+    # ... (your existing code for displaying Vata results)
+
+else:  # selected_dosha == "Kapha"
+    kapha_input_values = {
+        'MeanBMI': st.sidebar.number_input("Mean BMI (Kapha)"),
+        'SedentaryMinutes': st.sidebar.number_input("Sedentary Minutes (min) (Kapha)"),
+        'LightlyActiveMinutes': st.sidebar.number_input("Lightly Active Minutes (min) (Kapha)"),
+        'FairlyActiveMinutes': st.sidebar.number_input("Fairly Active Minutes (min) (Kapha)"),
+        'VeryActiveMinutes': st.sidebar.number_input("Very Active Minutes (min) (Kapha)")
+    }
 
 # Predict scores for Pitta, Vata, and Kapha
 predicted_pitta_score, pitta_category, pitta_nutrition_advice = predict_pitta_score(pitta_input_values)
