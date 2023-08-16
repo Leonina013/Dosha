@@ -61,15 +61,26 @@ def get_pitta_nutrition_advice(pitta_category):
 
 def get_vata_nutrition_advice(vata_category):
     nutrition_advice = {
-        "No to Light Vata": '''Favor warm, cooked, and easily digestible foods...
-        # Vata nutrition advice continues here
-        ''',
-        "Moderate Vata": '''Favor warm, cooked, and easily digestible foods...
-        # Vata nutrition advice continues here
-        ''',
-        "Extreme Vata": '''Focus on stabilizing and grounding foods...
-        # Vata nutrition advice continues here
-        '''
+        "No to Light Vata": '''Favor warm, cooked, and easily digestible foods.
+Incorporate plenty of healthy fats such as ghee, coconut oil, and olive oil.
+Include nourishing and grounding foods like sweet potatoes, whole grains (cooked), cooked vegetables, and lentils.
+Drink warm herbal teas (non-caffeinated) like ginger, cinnamon, and licorice.
+Reduce raw foods, cold foods, and excessive caffeine.''',
+        "Moderate Vata": '''Favor warm, cooked, and easily digestible foods.
+Incorporate plenty of healthy fats such as ghee, coconut oil, and olive oil.
+Include nourishing and grounding foods like sweet potatoes, whole grains (cooked), cooked vegetables, and lentils.
+Drink warm herbal teas (non-caffeinated) like ginger, cinnamon, and licorice.
+Reduce raw foods, cold foods, and excessive caffeine.
+Include a variety of cooked vegetables, grains, and legumes.
+Incorporate small amounts of dairy, if tolerated (e.g., warm milk with spices).
+Include foods with mild natural sweetness like ripe fruits (in moderation) and sweet spices.
+Hydrate well with warm water, herbal teas, and warm soups.''',
+        "Extreme Vata": '''Focus on stabilizing and grounding foods.
+Opt for cooked, moist, and oily foods.
+Prioritize cooked grains like rice and quinoa, well-cooked vegetables, and hearty soups.
+Include ample healthy fats from avocados, nuts, seeds, and ghee.
+Use warming spices like ginger, cinnamon, and cumin.
+Stay hydrated with warm, non-caffeinated herbal teas.'''
     }
     return nutrition_advice.get(vata_category, "")
 
