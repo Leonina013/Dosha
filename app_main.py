@@ -25,6 +25,20 @@ def get_pitta_nutrition_advice(pitta_category):
     }
     return nutrition_advice.get(pitta_category, "")
 
+def get_vata_nutrition_advice(vata_category):
+    nutrition_advice = {
+        "No to Light Vata": '''Favor warm, cooked, and easily digestible foods...
+        # Vata nutrition advice continues here
+        ''',
+        "Moderate Vata": '''Favor warm, cooked, and easily digestible foods...
+        # Vata nutrition advice continues here
+        ''',
+        "Extreme Vata": '''Focus on stabilizing and grounding foods...
+        # Vata nutrition advice continues here
+        '''
+    }
+    return nutrition_advice.get(vata_category, "")
+
 # Function to predict Pitta score
 def predict_pitta_score(input_values):
     pitta_feature_columns = ['AverageHeartRate', 'CumulativeSteps', 'ActiveDistance', 'LightActiveDistance', 'MinutesAsleep', 'Calories']
@@ -140,6 +154,9 @@ st.write("Nutrition Advice for Pitta:", pitta_nutrition_advice)
 st.write("## Vata Dosha")
 st.write("Predicted Vata Score:", predicted_vata_score)
 st.write("Predicted Vata Category:", vata_category)
+vata_nutrition_advice = get_vata_nutrition_advice(vata_category)
+st.write("Nutrition Advice for Vata:", vata_nutrition_advice)
+
 
 st.write("## Kapha Dosha")
 st.write("Predicted Kapha Score:", predicted_kapha_score)
