@@ -89,9 +89,27 @@ def get_vata_nutrition_advice(vata_category):
 
 def get_kapha_nutrition_advice(kapha_category):
     nutrition_advice = {
-        "No to Light Kapha": '''Warm and light soups with a variety of vegetables. Fresh fruits like apples, pears, berries, and pomegranates. Whole grains like quinoa, barley, and millet. Legumes such as lentils and mung beans. Lean proteins like fish and chicken (in moderation). Warm herbal teas and spices like ginger, black pepper, and turmeric.''',
-        "Moderate Kapha": '''Add more pungent spices like cayenne pepper and mustard seeds to increase metabolism. Limit dairy products and opt for low-fat or plant-based alternatives. Reduce the intake of sweet and heavy fruits like bananas and avocados. Warm and dry foods become more important at this stage. Avoid cold and heavy foods like ice cream and deep-fried items. Include bitter greens like kale, arugula, and dandelion leaves. Choose lighter proteins like tofu, tempeh, and lean turkey. Use warming spices generously, such as cinnamon, cloves, and cardamom. ''',
-        "Extreme Kapha": '''Stick to a strict Kapha-pacifying diet with mainly warm, light, and dry foods. Focus on steamed or lightly cooked vegetables like asparagus, broccoli, and cauliflower. Incorporate more legumes and reduce meat consumption. Avoid sweeteners and processed foods completely. Use spices like cayenne, garlic, and ginger to stimulate digestion.'''
+        "No to Light Kapha": '''\n
+        •Warm and light soups with a variety of vegetables.\n
+        •Fresh fruits like apples, pears, berries, and pomegranates.\n
+        •Whole grains like quinoa, barley, and millet.\n
+        •Legumes such as lentils and mung beans.\n
+        •Lean proteins like fish and chicken (in moderation).\n
+        •Warm herbal teas and spices like ginger, black pepper, and turmeric.''',
+        "Moderate Kapha": '''\n
+        •Add more pungent spices like cayenne pepper and mustard seeds to increase metabolism.\n
+        •Limit dairy products and opt for low-fat or plant-based alternatives.\n
+        •Reduce the intake of sweet and heavy fruits like bananas and avocados.\n
+        •Warm and dry foods become more important at this stage.\n
+        •Avoid cold and heavy foods like ice cream and deep-fried items.\n
+        •Include bitter greens like kale, arugula, and dandelion leaves.\n
+        •Choose lighter proteins like tofu, tempeh, and lean turkey.\n
+        •Use warming spices generously, such as cinnamon, cloves, and cardamom. ''',
+        "Extreme Kapha": '''\n
+        •Stick to a strict Kapha-pacifying diet with mainly warm, light, and dry foods.\n
+        •Focus on steamed or lightly cooked vegetables like asparagus, broccoli, and cauliflower.\n
+        •Incorporate more legumes and reduce meat consumption. Avoid sweeteners and processed foods completely.\n
+        •Use spices like cayenne, garlic, and ginger to stimulate digestion.'''
     }
     return nutrition_advice.get(kapha_category, "")
 
