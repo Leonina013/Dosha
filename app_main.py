@@ -21,10 +21,10 @@ def get_pitta_nutrition_advice(pitta_category):
     nutrition_advice = {
         "No to Light Pitha": '''\n
         Favor cooling foods: Incorporate foods that have a cooling effect on the body.\n
-        Include sweet, bitter, and astringent tastes: Focus on foods with these tastes to balance excess heat.\n
-        Limit spicy, oily, and acidic foods: Reduce or avoid foods that can increase Pitta, such as hot spices, fried foods, and excessive sourness.\n
-        Stay hydrated: Drink cool or room temperature water and herbal teas to balance the heat.\n
-        Enjoy fresh, ripe, and sweet fruits: Opt for sweet fruits like melons, grapes, and sweet berries.\n
+        •Include sweet, bitter, and astringent tastes: Focus on foods with these tastes to balance excess heat.\n
+        •Limit spicy, oily, and acidic foods: Reduce or avoid foods that can increase Pitta, such as hot spices, fried foods, and excessive sourness.\n
+        •Stay hydrated: Drink cool or room temperature water and herbal teas to balance the heat.\n
+        •Enjoy fresh, ripe, and sweet fruits: Opt for sweet fruits like melons, grapes, and sweet berries.\n
         Sample No to Light Pitta Diet:\n
         - Breakfast: A bowl of cool oatmeal with ripe berries.\n
         - Lunch: Steamed vegetables with quinoa and a cooling mint-cucumber yogurt sauce.\n
@@ -33,10 +33,10 @@ def get_pitta_nutrition_advice(pitta_category):
         ''',
         "Moderate Pitha": '''\n
         Balanced meals: Include a mix of cooling and slightly warming foods to maintain equilibrium.\n
-        Enjoy a variety of tastes: Incorporate sweet, bitter, astringent, and a moderate amount of pungent tastes.\n
-        Moderation in spices: Use milder spices like coriander, fennel, and cardamom in your meals.\n
-        Stay hydrated: Drink room temperature water and herbal teas.\n
-        Include fresh and cooked foods: Combine raw and cooked vegetables, grains, and legumes.\n
+        •Enjoy a variety of tastes: Incorporate sweet, bitter, astringent, and a moderate amount of pungent tastes.\n
+        •Moderation in spices: Use milder spices like coriander, fennel, and cardamom in your meals.\n
+        •Stay hydrated: Drink room temperature water and herbal teas.\n
+        •Include fresh and cooked foods: Combine raw and cooked vegetables, grains, and legumes.\n
         Sample Moderate Pitta Diet:\n
         - Breakfast: A fruit smoothie with ripe bananas, mangoes, and a pinch of cardamom.\n
         - Lunch: Mixed greens salad with roasted vegetables, quinoa, and a lemon-olive oil dressing.\n
@@ -45,10 +45,10 @@ def get_pitta_nutrition_advice(pitta_category):
         ''',
         "Extreme Pitha": '''\n
         Emphasize cooling and calming foods: Prioritize foods with a strong cooling effect.\n
-        Favor sweet, bitter, and astringent tastes: These tastes help balance excess heat and acidity.\n
-        Avoid hot and spicy foods: Steer clear of very spicy, oily, and fried foods.\n
-        Stay well-hydrated: Drink cool water, coconut water, and herbal teas.\n
-        Include plenty of fresh fruits: Opt for sweet, juicy fruits that help cool the body.\n
+        •Favor sweet, bitter, and astringent tastes: These tastes help balance excess heat and acidity.\n
+        •Avoid hot and spicy foods: Steer clear of very spicy, oily, and fried foods.\n
+        •Stay well-hydrated: Drink cool water, coconut water, and herbal teas.\n
+        •Include plenty of fresh fruits: Opt for sweet, juicy fruits that help cool the body.\n
         Sample High Pitta Diet:\n
         - Breakfast: A bowl of cool, cooked barley cereal with sliced peaches.\n
         - Lunch: Cucumber and mint raita with rice or quinoa and a side of steamed broccoli.\n
@@ -61,26 +61,29 @@ def get_pitta_nutrition_advice(pitta_category):
 
 def get_vata_nutrition_advice(vata_category):
     nutrition_advice = {
-        "No to Light Vata": '''Favor warm, cooked, and easily digestible foods.
-Incorporate plenty of healthy fats such as ghee, coconut oil, and olive oil.
-Include nourishing and grounding foods like sweet potatoes, whole grains (cooked), cooked vegetables, and lentils.
-Drink warm herbal teas (non-caffeinated) like ginger, cinnamon, and licorice.
-Reduce raw foods, cold foods, and excessive caffeine.''',
-        "Moderate Vata": '''Favor warm, cooked, and easily digestible foods.
-Incorporate plenty of healthy fats such as ghee, coconut oil, and olive oil.
-Include nourishing and grounding foods like sweet potatoes, whole grains (cooked), cooked vegetables, and lentils.
-Drink warm herbal teas (non-caffeinated) like ginger, cinnamon, and licorice.
-Reduce raw foods, cold foods, and excessive caffeine.
-Include a variety of cooked vegetables, grains, and legumes.
-Incorporate small amounts of dairy, if tolerated (e.g., warm milk with spices).
-Include foods with mild natural sweetness like ripe fruits (in moderation) and sweet spices.
-Hydrate well with warm water, herbal teas, and warm soups.''',
-        "Extreme Vata": '''Focus on stabilizing and grounding foods.
-Opt for cooked, moist, and oily foods.
-Prioritize cooked grains like rice and quinoa, well-cooked vegetables, and hearty soups.
-Include ample healthy fats from avocados, nuts, seeds, and ghee.
-Use warming spices like ginger, cinnamon, and cumin.
-Stay hydrated with warm, non-caffeinated herbal teas.'''
+        "No to Light Vata": '''\n
+        •Favor warm, cooked, and easily digestible foods.\n
+        •Incorporate plenty of healthy fats such as ghee, coconut oil, and olive oil.\n
+        •Include nourishing and grounding foods like sweet potatoes, whole grains (cooked), cooked vegetables, and lentils.\n
+        •Drink warm herbal teas (non-caffeinated) like ginger, cinnamon, and licorice.\n
+        •Reduce raw foods, cold foods, and excessive caffeine.''',
+        "Moderate Vata": '''\n
+        •Favor warm, cooked, and easily digestible foods.\n
+        •Incorporate plenty of healthy fats such as ghee, coconut oil, and olive oil.\n
+        •Include nourishing and grounding foods like sweet potatoes, whole grains (cooked), cooked vegetables, and lentils.\n
+        •Drink warm herbal teas (non-caffeinated) like ginger, cinnamon, and licorice.\n
+        •Reduce raw foods, cold foods, and excessive caffeine.\n
+        •Include a variety of cooked vegetables, grains, and legumes.\n
+        •Incorporate small amounts of dairy, if tolerated (e.g., warm milk with spices).\n
+        •Include foods with mild natural sweetness like ripe fruits (in moderation) and sweet spices.\n
+        •Hydrate well with warm water, herbal teas, and warm soups.''',
+        "Extreme Vata": '''\n
+        •Focus on stabilizing and grounding foods.\n
+        •Opt for cooked, moist, and oily foods.\n
+        •Prioritize cooked grains like rice and quinoa, well-cooked vegetables, and hearty soups.\n
+        •Include ample healthy fats from avocados, nuts, seeds, and ghee.\n
+        •Use warming spices like ginger, cinnamon, and cumin.\n
+        •Stay hydrated with warm, non-caffeinated herbal teas.'''
     }
     return nutrition_advice.get(vata_category, "")
 
