@@ -41,18 +41,12 @@ def get_vata_nutrition_advice(vata_category):
 
 def get_kapha_nutrition_advice(kapha_category):
     nutrition_advice = {
-        "No to Light Kapha": '''Include warm, light, and stimulating foods...
-            Nutrition suggestions for No to Light Kapha...''',
-        "Moderate Kapha": '''Opt for lighter and drier foods...
-            Nutrition suggestions for Moderate Kapha...''',
-        "Extreme Kapha": '''Emphasize warm, light, and spicy foods...
-            Nutrition suggestions for Extreme Kapha...'''
+        "No to Light Kapha": '''Warm and light soups with a variety of vegetables. Fresh fruits like apples, pears, berries, and pomegranates. Whole grains like quinoa, barley, and millet. Legumes such as lentils and mung beans. Lean proteins like fish and chicken (in moderation). Warm herbal teas and spices like ginger, black pepper, and turmeric.''',
+        "Moderate Kapha": '''Add more pungent spices like cayenne pepper and mustard seeds to increase metabolism. Limit dairy products and opt for low-fat or plant-based alternatives. Reduce the intake of sweet and heavy fruits like bananas and avocados. Warm and dry foods become more important at this stage. Avoid cold and heavy foods like ice cream and deep-fried items. Include bitter greens like kale, arugula, and dandelion leaves. Choose lighter proteins like tofu, tempeh, and lean turkey. Use warming spices generously, such as cinnamon, cloves, and cardamom. ''',
+        "Extreme Kapha": '''Stick to a strict Kapha-pacifying diet with mainly warm, light, and dry foods. Focus on steamed or lightly cooked vegetables like asparagus, broccoli, and cauliflower. Incorporate more legumes and reduce meat consumption. Avoid sweeteners and processed foods completely. Use spices like cayenne, garlic, and ginger to stimulate digestion.'''
     }
     return nutrition_advice.get(kapha_category, "")
 
-
-
-    
 
 # Function to predict Pitta score
 def predict_pitta_score(input_values):
@@ -117,7 +111,7 @@ def predict_kapha_score(input_values):
     input_values_df = pd.DataFrame([input_values])
 
     predicted_kapha_score = kapha_model.predict(input_values_df)
-    kapha_category = "No to Light Kapha" if predicted_kapha_score[0] <= 5 else ("Moderate Kapha" if predicted_kapha_score[0] <= 8 else "Extreme Kapha")
+    kapha_category = "No to Light Kapha" if predicted_kapha_score[0] <= 4 else ("Moderate Kapha" if predicted_kapha_score[0] <= 7 else "Extreme Kapha")
 
     return predicted_kapha_score[0], kapha_category
 
