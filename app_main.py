@@ -19,7 +19,7 @@ def get_pitta_category(pitta_score):
 def get_pitta_nutrition_advice(pitta_category):
     # Nutrition advice for each category
     nutrition_advice = {
-        "No to Light Pitha": '''
+        "No to Light Pitha": '''\n
         Favor cooling foods: Incorporate foods that have a cooling effect on the body.\n
         Include sweet, bitter, and astringent tastes: Focus on foods with these tastes to balance excess heat.\n
         Limit spicy, oily, and acidic foods: Reduce or avoid foods that can increase Pitta, such as hot spices, fried foods, and excessive sourness.\n
@@ -31,7 +31,7 @@ def get_pitta_nutrition_advice(pitta_category):
         - Snack: Sliced watermelon or a cool cucumber salad.\n
         - Dinner: Basmati rice with steamed zucchini and a small serving of sweet and juicy fruits.\n
         ''',
-        "Moderate Pitha": '''
+        "Moderate Pitha": '''\n
         Balanced meals: Include a mix of cooling and slightly warming foods to maintain equilibrium.\n
         Enjoy a variety of tastes: Incorporate sweet, bitter, astringent, and a moderate amount of pungent tastes.\n
         Moderation in spices: Use milder spices like coriander, fennel, and cardamom in your meals.\n
@@ -43,7 +43,7 @@ def get_pitta_nutrition_advice(pitta_category):
         - Snack: Sliced apples with almond butter.\n
         - Dinner: Baked salmon with steamed asparagus and a side of basmati rice.\n
         ''',
-        "Extreme Pitha": '''
+        "Extreme Pitha": '''\n
         Emphasize cooling and calming foods: Prioritize foods with a strong cooling effect.\n
         Favor sweet, bitter, and astringent tastes: These tastes help balance excess heat and acidity.\n
         Avoid hot and spicy foods: Steer clear of very spicy, oily, and fried foods.\n
