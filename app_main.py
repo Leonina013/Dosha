@@ -222,10 +222,10 @@ st.sidebar.title("Enter Resting Heartbeat Value")
 heartbeat_value = st.sidebar.number_input("Enter Value")
 
 if st.sidebar.button("Predict Dosha Predominance"):
-    # Call the prediction function with the entered heartbeat value
+
     predicted_dosha = predict_dosha_predominance(heartbeat_value)
 
-    # Display the predicted Dosha Predominance
+
     st.write(f"Predicted Dosha Predominance: {predicted_dosha}")
 
 # Streamlit app
