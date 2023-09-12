@@ -216,10 +216,10 @@ import streamlit as st
 
 
 st.title("Dosha Predominance Prediction")
-st.sidebar.title("Enter Heartbeat Value")
+st.sidebar.title("Enter Resting Heartbeat Value")
 
 # Heartbeat input field
-heartbeat_value = st.sidebar.number_input("Enter Heartbeat Value")
+heartbeat_value = st.sidebar.number_input("Enter Value")
 
 if st.sidebar.button("Predict Dosha Predominance"):
     # Call the prediction function with the entered heartbeat value
