@@ -216,7 +216,7 @@ import streamlit as st
 
 
 st.title("Dosha Predominance Prediction")
-st.sidebar.title("Enter Resting Heartbeat")
+st.sidebar.title("Resting Heartbeat")
 
 # Heartbeat input field
 heartbeat_value = st.sidebar.number_input("Enter Value")
