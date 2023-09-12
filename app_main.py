@@ -227,8 +227,7 @@ if st.sidebar.button("Predict Dosha Predominance"):
 
     # Display the predicted Dosha Predominance
     st.write(f"Predicted Dosha Predominance: {predicted_dosha}")
-
- st.button("Proceed to Nutrition Prediction")
+  st.button("Proceed to Nutrition Prediction")
 
 if st.button("Proceed to Nutrition Prediction"):
 # Streamlit app
