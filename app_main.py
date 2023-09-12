@@ -2,42 +2,28 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import xgboost as xgb
-from sklearn.ensemble import GradientBoostingRegressor, RandomForestRegressor  
+from sklearn.ensemble import GradientBoostingRegressor, RandomForestRegressor
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import mean_squared_error, r2_score
-
-
-import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 
 data_path = 'heart_rate_scores.csv'
 df = pd.read_csv(data_path)
 
-X = df[['Value']]  
+X = df[['Value']]
 y = df['Score']
-
 
 clf = RandomForestClassifier(n_estimators=100, random_state=42)
 
 clf.fit(X, y)
 
 def predict_dosha_predominance(heartbeat_value):
-
     predicted_scores = clf.predict([[heartbeat_value]])
-
-
     dosha_mapping = {1: 'Vata Predominant', 2: 'Pitta Predominant', 3: 'Kapha Predominant'}
-
- 
     predicted_dosha = dosha_mapping.get(predicted_scores[0], 'Abnormal Value of Resting Heart Rate')
-
     return predicted_dosha
 
-
-
-
-# Function to get Pitta category and nutrition advice
 def get_pitta_category(pitta_score):
     if pitta_score <= 5:
         return "No to Light Pitha"
@@ -47,7 +33,6 @@ def get_pitta_category(pitta_score):
         return "Extreme Pitha"
 
 def get_pitta_nutrition_advice(pitta_category):
-    # Nutrition advice for each category
     nutrition_advice = {
         "No to Light Pitha": '''\n
         Favor cooling foods: Incorporate foods that have a cooling effect on the body.\n
@@ -87,7 +72,6 @@ def get_pitta_nutrition_advice(pitta_category):
         '''
     }
     return nutrition_advice.get(pitta_category, "")
-
 
 def get_vata_nutrition_advice(vata_category):
     nutrition_advice = {
@@ -143,8 +127,6 @@ def get_kapha_nutrition_advice(kapha_category):
     }
     return nutrition_advice.get(kapha_category, "")
 
-
-# Function to predict Pitta score
 def predict_pitta_score(input_values):
     pitta_feature_columns = ['AverageHeartRate', 'CumulativeSteps', 'ActiveDistance', 'LightActiveDistance', 'MinutesAsleep', 'Calories']
     pitta_scaler = StandardScaler()
@@ -170,7 +152,6 @@ def predict_pitta_score(input_values):
 
     return predicted_pitta_score[0], pitta_category, nutrition_advice
 
-# Function to predict Vata score
 def predict_vata_score(input_values):
     vata_feature_columns = ['TotalMinutesAsleep', 'BedtimeRoutine', 'SleepQuality', 'TotalSteps', 'SedentaryMinutes', 'ModeratelyActiveMinutes']
 
@@ -211,67 +192,31 @@ def predict_kapha_score(input_values):
 
     return predicted_kapha_score[0], kapha_category
 
-import streamlit as st
+st.title("Dosha Predominance and Nutrition Prediction")
 
-st.title("Dosha Predominance Prediction")
+st.header("Dosha Predominance Prediction")
 st.sidebar.title("Enter Heartbeat Value")
 
 heartbeat_value = st.sidebar.number_input("Enter Heartbeat Value")
 
 if st.sidebar.button("Predict Dosha Predominance"):
-
     predicted_dosha = predict_dosha_predominance(heartbeat_value)
-
-
     st.write(f"Predicted Dosha Predominance: {predicted_dosha}")
+    
+    if st.button("Proceed to Nutrition Prediction"):
+        st.session_state.dosha_selected = predicted_dosha
 
+if "dosha_selected" in st.session_state:
+    selected_dosha = st.session_state.dosha_selected
+    st.header(f"{selected_dosha} Dosha Nutrition Prediction")
+    st.sidebar.title(f"Enter {selected_dosha} Dosha Features")
 
-#nutri part
-st.title("Dosha Score Prediction")
-st.sidebar.title("Enter Dosha Features")
+    if selected_dosha == "Pitta":
+        st.write("Input fields and predictions for Pitta Dosha go here.")
+    elif selected_dosha == "Vata":
+        st.write("Input fields and predictions for Vata Dosha go here.")
+    else:
+        st.write("Input fields and predictions for Kapha Dosha go here.")
 
-# Dosha selection dropdown
-dosha_type = st.sidebar.selectbox("Select Dosha Type", ["Pitta", "Vata", "Kapha"])
-
-if dosha_type == "Pitta":
-    dosha_input_values = {
-        'AverageHeartRate': st.sidebar.number_input("Average Heart Rate (bpm) (Pitta)"),
-        'CumulativeSteps': st.sidebar.number_input("Cumulative Steps (Pitta)"),
-        'ActiveDistance': st.sidebar.number_input("Active Distance (km) (Pitta)"),
-        'LightActiveDistance': st.sidebar.number_input("Light Active Distance (km) (Pitta)"),
-        'MinutesAsleep': st.sidebar.number_input("Minutes Asleep (min) (Pitta)"),
-        'Calories': st.sidebar.number_input("Calories (cal) (Pitta)")
-    }
-    predicted_score, dosha_category, nutrition_advice = predict_pitta_score(dosha_input_values)
-    dosha_nutrition_advice = get_pitta_nutrition_advice(dosha_category)
-elif dosha_type == "Vata":
-    dosha_input_values = {
-        'TotalMinutesAsleep': st.sidebar.number_input("Total Minutes Asleep (min) (Vata)"),
-        'BedtimeRoutine': st.sidebar.number_input("Bedtime Routine (min) (Vata)"),
-        'SleepQuality': st.sidebar.number_input("Sleep Quality (BedtimeRoutine/TotalMinutesAsleep) (Vata)"),
-        'TotalSteps': st.sidebar.number_input("Total Steps (Vata)"),
-        'SedentaryMinutes': st.sidebar.number_input("Sedentary Minutes (min) (Vata)"),
-        'ModeratelyActiveMinutes': st.sidebar.number_input("Moderately Active Minutes (min) (Vata)")
-    }
-    predicted_score, dosha_category = predict_vata_score(dosha_input_values)
-    dosha_nutrition_advice = get_vata_nutrition_advice(dosha_category)
-else:
-    dosha_input_values = {
-        'MeanBMI': st.sidebar.number_input("Mean BMI (Kapha)"),
-        'SedentaryMinutes': st.sidebar.number_input("Sedentary Minutes (min) (Kapha)"),
-        'LightlyActiveMinutes': st.sidebar.number_input("Lightly Active Minutes (min) (Kapha)"),
-        'FairlyActiveMinutes': st.sidebar.number_input("Fairly Active Minutes (min) (Kapha)"),
-        'VeryActiveMinutes': st.sidebar.number_input("Very Active Minutes (min) (Kapha)")
-    }
-    predicted_score, dosha_category = predict_kapha_score(dosha_input_values)
-    dosha_nutrition_advice = get_kapha_nutrition_advice(dosha_category)
-
-# Display results for selected dosha
-st.write(f"## {dosha_type} Dosha")
-st.write(f"Predicted {dosha_type} Score:", predicted_score)
-st.write(f"Predicted {dosha_type} Category:", dosha_category)
-st.write(f"Nutrition Advice for {dosha_type}:", dosha_nutrition_advice)
-
-
-
-
+if st.button("Reset"):
+    st.session_state.dosha_selected = None
