@@ -224,6 +224,7 @@ heartbeat_value = st.sidebar.number_input("Enter Heartbeat Value")
 predicted_dosha = ""
 dosha_type = ""
 dosha_input_values = {}
+nutrition_prediction_activated = False
 
 # Predict Dosha Predominance when the button is clicked
 if st.sidebar.button("Predict Dosha Predominance"):
@@ -232,6 +233,7 @@ if st.sidebar.button("Predict Dosha Predominance"):
 
     # Display the predicted Dosha Predominance
     st.write(f"Predicted Dosha Predominance: {predicted_dosha}")
+    nutrition_prediction_activated = True
 
 # Streamlit app
 st.title("Dosha Score Prediction")
@@ -249,39 +251,17 @@ if dosha_type == "Pitta":
         'MinutesAsleep': st.sidebar.number_input("Minutes Asleep (min) (Pitta)"),
         'Calories': st.sidebar.number_input("Calories (cal) (Pitta)")
     }
-elif dosha_type == "Vata":
-    dosha_input_values = {
-        'TotalMinutesAsleep': st.sidebar.number_input("Total Minutes Asleep (min) (Vata)"),
-        'BedtimeRoutine': st.sidebar.number_input("Bedtime Routine (min) (Vata)"),
-        'SleepQuality': st.sidebar.number_input("Sleep Quality (BedtimeRoutine/TotalMinutesAsleep) (Vata)"),
-        'TotalSteps': st.sidebar.number_input("Total Steps (Vata)"),
-        'SedentaryMinutes': st.sidebar.number_input("Sedentary Minutes (min) (Vata)"),
-        'ModeratelyActiveMinutes': st.sidebar.number_input("Moderately Active Minutes (min) (Vata)")
-    }
-elif dosha_type == "Kapha":
-    dosha_input_values = {
-        'MeanBMI': st.sidebar.number_input("Mean BMI (Kapha)"),
-        'SedentaryMinutes': st.sidebar.number_input("Sedentary Minutes (min) (Kapha)"),
-        'LightlyActiveMinutes': st.sidebar.number_input("Lightly Active Minutes (min) (Kapha)"),
-        'FairlyActiveMinutes': st.sidebar.number_input("Fairly Active Minutes (min) (Kapha)"),
-        'VeryActiveMinutes': st.sidebar.number_input("Very Active Minutes (min) (Kapha)")
-    }
 
-# Display results for the selected dosha
-st.write(f"## {dosha_type} Dosha")
-if dosha_input_values:
-    # Call the appropriate prediction function based on the selected dosha
-    if dosha_type == "Pitta":
-        predicted_score, dosha_category, nutrition_advice = predict_pitta_score(dosha_input_values)
-        dosha_nutrition_advice = get_pitta_nutrition_advice(dosha_category)
-    elif dosha_type == "Vata":
-        predicted_score, dosha_category = predict_vata_score(dosha_input_values)
-        dosha_nutrition_advice = get_vata_nutrition_advice(dosha_category)
-    elif dosha_type == "Kapha":
-        predicted_score, dosha_category = predict_kapha_score(dosha_input_values)
-        dosha_nutrition_advice = get_kapha_nutrition_advice(dosha_category)
+# Button to activate Nutrition Prediction
+if nutrition_prediction_activated:
+    if st.button("Activate Nutrition Prediction"):
+        if dosha_type == "Pitta" and dosha_input_values:
+            # Call the prediction function for Pitta dosha
+            predicted_score, dosha_category, nutrition_advice = predict_pitta_score(dosha_input_values)
+            dosha_nutrition_advice = get_pitta_nutrition_advice(dosha_category)
 
-    # Display results
-    st.write(f"Predicted {dosha_type} Score:", predicted_score)
-    st.write(f"Predicted {dosha_type} Category:", dosha_category)
-    st.write(f"Nutrition Advice for {dosha_type}:", dosha_nutrition_advice)
+            # Display results for Pitta dosha
+            st.write(f"## {dosha_type} Dosha")
+            st.write(f"Predicted {dosha_type} Score:", predicted_score)
+            st.write(f"Predicted {dosha_type} Category:", dosha_category)
+            st.write(f"Nutrition Advice for {dosha_type}:", dosha_nutrition_advice)
