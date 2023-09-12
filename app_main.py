@@ -228,8 +228,9 @@ if st.sidebar.button("Predict Dosha Predominance"):
     # Display the predicted Dosha Predominance
     st.write(f"Predicted Dosha Predominance: {predicted_dosha}")
 
+ st.button("Proceed to Nutrition Prediction")
 
-
+if st.button("Proceed to Nutrition Prediction"):
 # Streamlit app
 st.title("Dosha Score Prediction")
 st.sidebar.title("Enter Dosha Features")
@@ -275,3 +276,5 @@ st.write(f"## {dosha_type} Dosha")
 st.write(f"Predicted {dosha_type} Score:", predicted_score)
 st.write(f"Predicted {dosha_type} Category:", dosha_category)
 st.write(f"Nutrition Advice for {dosha_type}:", dosha_nutrition_advice)
+
+pass
