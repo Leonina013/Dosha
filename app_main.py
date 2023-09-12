@@ -7,6 +7,37 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import mean_squared_error, r2_score
 
+import pandas as pd
+from sklearn.ensemble import RandomForestClassifier
+
+
+data_path = 'heart_rate_scores.csv'
+df = pd.read_csv(data_path)
+
+
+X = df[['Value']]  
+y = df['Score']
+
+
+clf = RandomForestClassifier(n_estimators=100, random_state=42)
+
+
+clf.fit(X, y)
+
+
+def predict_dosha_predominance(heartbeat_value):
+  
+    predicted_scores = clf.predict([[heartbeat_value]])
+
+  
+    dosha_mapping = {1: 'Vata Predominant', 2: 'Pitta Predominant', 3: 'Kapha Predominant'}
+
+
+    predicted_dosha = dosha_mapping.get(predicted_scores[0], 'Abnormal Value of Resting Heart Rate')
+
+    return predicted_dosha
+
+
 # Function to get Pitta category and nutrition advice
 def get_pitta_category(pitta_score):
     if pitta_score <= 5:
@@ -180,6 +211,23 @@ def predict_kapha_score(input_values):
     kapha_category = "No to Light Kapha" if predicted_kapha_score[0] <= 4 else ("Moderate Kapha" if predicted_kapha_score[0] <= 7 else "Extreme Kapha")
 
     return predicted_kapha_score[0], kapha_category
+
+import streamlit as st
+
+
+st.title("Dosha Predominance Prediction")
+st.sidebar.title("Enter Heartbeat Value")
+
+# Heartbeat input field
+heartbeat_value = st.sidebar.number_input("Enter Heartbeat Value")
+
+if st.sidebar.button("Predict Dosha Predominance"):
+    # Call the prediction function with the entered heartbeat value
+    predicted_dosha = predict_dosha_predominance(heartbeat_value)
+
+    # Display the predicted Dosha Predominance
+    st.write(f"Predicted Dosha Predominance: {predicted_dosha}")
+
 
 
 # Streamlit app
