@@ -6,37 +6,6 @@ from sklearn.ensemble import GradientBoostingRegressor, RandomForestRegressor
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import mean_squared_error, r2_score
-import pandas as pd
-from sklearn.ensemble import RandomForestClassifier
-
-# Load the dataset
-data_path = '/content/drive/My Drive/av/heart_rate_scores.csv'
-df = pd.read_csv(data_path)
-
-# Split the dataset into features (X) and target (y)
-X = df[['Value']]  # Removed 'Id' from the features
-y = df['Score']
-
-# Initialize the RandomForestClassifier (you can choose other classifiers as well)
-clf = RandomForestClassifier(n_estimators=100, random_state=42)
-
-# Train the classifier on the entire dataset
-clf.fit(X, y)
-
-
-
-def predict_dosha_predominance(heartbeat_value):
-    # Predict Dosha predominance using the trained classifier
-    predicted_scores = clf.predict([[heartbeat_value]])
-
-    # Map the predicted scores to Dosha types
-    dosha_mapping = {1: 'Vata Predominant', 2: 'Pitta Predominant', 3: 'Kapha Predominant'}
-
-    # Get the predicted Dosha type
-    predicted_dosha = dosha_mapping.get(predicted_scores[0], 'Abnormal Value of Resting Heart Rate')
-
-    return predicted_dosha
-
 
 # Function to get Pitta category and nutrition advice
 def get_pitta_category(pitta_score):
@@ -211,27 +180,6 @@ def predict_kapha_score(input_values):
     kapha_category = "No to Light Kapha" if predicted_kapha_score[0] <= 4 else ("Moderate Kapha" if predicted_kapha_score[0] <= 7 else "Extreme Kapha")
 
     return predicted_kapha_score[0], kapha_category
-
-
-import streamlit as st
-
-# ... (previous Streamlit app code)
-
-st.title("Dosha Predominance Prediction")
-st.sidebar.title("Enter Heartbeat Value")
-
-# Heartbeat input field
-heartbeat_value = st.sidebar.number_input("Enter Heartbeat Value")
-
-if st.sidebar.button("Predict Dosha Predominance"):
-    # Call the prediction function with the entered heartbeat value
-    predicted_dosha = predict_dosha_predominance(heartbeat_value)
-
-    # Display the predicted Dosha Predominance
-    st.write(f"Predicted Dosha Predominance: {predicted_dosha}")
-
-# ... (rest of your Streamlit app code)
-
 
 
 # Streamlit app
